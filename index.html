@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منتجات أولد روك</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Tahoma", sans-serif;
+      background: #f9fbff;
+      color: #222;
+    }
+    /* Header */
+    header {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    header .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #000;
+      text-align: center;
+    }
+    .menu-toggle {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      font-size: 26px;
+      cursor: pointer;
+      color: #000;
+    }
+    nav {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      width: 200px;
+      flex-direction: column;
+    }
+    nav a {
+      padding: 12px;
+      color: #000;
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+    }
+    nav a:hover {
+      background: #f5f5f5;
+    }
+
+    /* Hero - défilement photos */
+    .hero {
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .slider {
+      display: flex;
+      width: calc(300px * 12);
+      animation: scroll 40s linear infinite;
+    }
+    .slider img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      margin: 0;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Sections */
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    h2 {
+      color: #005f99;
+      margin-bottom: 20px;
+    }
+
+    /* Produits */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .product {
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 15px;
+      background: #fafcff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+      height: 150px;
+      object-fit: cover;
+    }
+    .product button {
+      margin-top: 10px;
+      padding: 8px 14px;
+      border: none;
+      background: linear-gradient(45deg,#4dabf7,#339af0);
+      color: #fff;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* Formulaire */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    form label {
+      font-weight: bold;
+      align-self: flex-start;
+    }
+    form input, form select {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .form-products {
+      width: 100%;
+      max-width: 600px;
+    }
+    .form-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .form-item img {
+      width: 50px;
+      height: 50px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    .submit-btn {
+      background: linear-gradient(45deg,#4dabf7,#339af0);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* FAQ */
+    .faq-item {
+      text-align: right;
+      margin-bottom: 15px;
+    }
+    .faq-item h3 {
+      margin-bottom: 8px;
+      color: #0077b6;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">أولد روك</div>
+    <div class="menu-toggle">☰</div>
+    <nav>
+      <a href="#apropos">من نحن</a>
+      <a href="#produits">منتجاتنا</a>
+      <a href="#commande">طلب</a>
+      <a href="#faq">الأسئلة الشائعة</a>
+      <a href="#contact">اتصل بنا</a>
+    </nav>
+  </header>
+
+  <!-- Hero avec defilement -->
+  <section class="hero">
+    <div class="slider">
+      <img src="https://via.placeholder.com/300x200?text=Produit+1">
+      <img src="https://via.placeholder.com/300x200?text=Produit+2">
+      <img src="https://via.placeholder.com/300x200?text=Produit+3">
+      <img src="https://via.placeholder.com/300x200?text=Produit+4">
+      <img src="https://via.placeholder.com/300x200?text=Produit+5">
+      <img src="https://via.placeholder.com/300x200?text=Produit+6">
+      <img src="https://via.placeholder.com/300x200?text=Produit+7">
+      <img src="https://via.placeholder.com/300x200?text=Produit+8">
+      <img src="https://via.placeholder.com/300x200?text=Produit+1">
+      <img src="https://via.placeholder.com/300x200?text=Produit+2">
+      <img src="https://via.placeholder.com/300x200?text=Produit+3">
+      <img src="https://via.placeholder.com/300x200?text=Produit+4">
+    </div>
+  </section>
+
+  <!-- À propos -->
+  <section id="apropos">
+    <h2>من نحن</h2>
+    <p>نحن شركة "أولد روك" نقدم منتجات عالية الجودة مع خدمة توصيل لجميع ولايات الجزائر.</p>
+  </section>
+
+  <!-- Produits -->
+  <section id="produits">
+    <h2>منتجاتنا</h2>
+    <div class="products">
+      <div class="product">
+        <img src="https://via.placeholder.com/200x150?text=Produit+1">
+        <h3>منتج 1</h3>
+        <button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/200x150?text=Produit+2">
+        <h3>منتج 2</h3>
+        <button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/200x150?text=Produit+3">
+        <h3>منتج 3</h3>
+        <button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/200x150?text=Produit+4">
+        <h3>منتج 4</h3>
+        <button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/200x150?text=Produit+5">
+        <h3>منتج 5</h3>
+        <button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/200x150?text=Produit+6">
+        <h3>منتج 6</h3>
+        <button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/200x150?text=Produit+7">
+        <h3>منتج 7</h3>
+        <button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/200x150?text=Produit+8">
+        <h3>منتج 8</h3>
+        <button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulaire -->
+  <section id="commande">
+    <h2>نموذج الطلب</h2>
+    <p style="color:red;">الحد الأدنى للطلب هو 30 علبة</p>
+    <form>
+      <label>الاسم الكامل</label>
+      <input type="text" required>
+
+      <label>البريد الإلكتروني</label>
+      <input type="email" required>
+
+      <label>رقم الهاتف</label>
+      <input type="tel" value="+213" required>
+
+      <label>العنوان الكامل</label>
+      <input type="text" required>
+
+      <label>الولاية</label>
+      <select required>
+        <option>أدرار</option>
+        <option>الشلف</option>
+        <option>الأغواط</option>
+        <option>أم البواقي</option>
+        <option>باتنة</option>
+        <option>بجاية</option>
+        <option>بسكرة</option>
+        <option>بشار</option>
+        <option>البليدة</option>
+        <option>البويرة</option>
+        <option>تمنراست</option>
+        <option>تبسة</option>
+        <option>تلمسان</option>
+        <option>تيارت</option>
+        <option>تيزي وزو</option>
+        <option>الجزائر</option>
+        <option>الجلفة</option>
+        <option>جيجل</option>
+        <option>سطيف</option>
+        <option>سعيدة</option>
+        <option>سكيكدة</option>
+        <option>سيدي بلعباس</option>
+        <option>عنابة</option>
+        <option>قالمة</option>
+        <option>قسنطينة</option>
+        <option>المدية</option>
+        <option>مستغانم</option>
+        <option>المسيلة</option>
+        <option>معسكر</option>
+        <option>ورقلة</option>
+        <option>وهران</option>
+        <option>البيض</option>
+        <option>إليزي</option>
+        <option>برج بوعريريج</option>
+        <option>بومرداس</option>
+        <option>الطارف</option>
+        <option>تندوف</option>
+        <option>تيسمسيلت</option>
+        <option>الوادي</option>
+        <option>خنشلة</option>
+        <option>سوق أهراس</option>
+        <option>تيبازة</option>
+        <option>ميلة</option>
+        <option>عين الدفلى</option>
+        <option>النعامة</option>
+        <option>عين تموشنت</option>
+        <option>غرداية</option>
+        <option>غليزان</option>
+      </select>
+
+      <div class="form-products">
+        <h3>اختر الكمية لكل منتج</h3>
+        <div class="form-item">
+          <img src="https://via.placeholder.com/50?text=1">
+          <span>منتج 1</span>
+          <input type="number" placeholder="الكمية">
+          <input type="text" placeholder="الربع">
+        </div>
+        <div class="form-item">
+          <img src="https://via.placeholder.com/50?text=2">
+          <span>منتج 2</span>
+          <input type="number" placeholder="الكمية">
+          <input type="text" placeholder="الربع">
+        </div>
+        <div class="form-item">
+          <img src="https://via.placeholder.com/50?text=3">
+          <span>منتج 3</span>
+          <input type="number" placeholder="الكمية">
+          <input type="text" placeholder="الربع">
+        </div>
+        <div class="form-item">
+          <img src="https://via.placeholder.com/50?text=4">
+          <span>منتج 4</span>
+          <input type="number" placeholder="الكمية">
+          <input type="text" placeholder="الربع">
+        </div>
+        <div class="form-item">
+          <img src="https://via.placeholder.com/50?text=5">
+          <span>منتج 5</span>
+          <input type="number" placeholder="الكمية">
+          <input type="text" placeholder="الربع">
+        </div>
+        <div class="form-item">
+          <img src="https://via.placeholder.com/50?text=6">
+          <span>منتج 6</span>
+          <input type="number" placeholder="الكمية">
+          <input type="text" placeholder="الربع">
+        </div>
+        <div class="form-item">
+          <img src="https://via.placeholder.com/50?text=7">
+          <span>منتج 7</span>
+          <input type="number" placeholder="الكمية">
+          <input type="text" placeholder="الربع">
+        </div>
+        <div class="form-item">
+          <img src="https://via.placeholder.com/50?text=8">
+          <span>منتج 8</span>
+          <input type="number" placeholder="الكمية">
+          <input type="text" placeholder="الربع">
+        </div>
+      </div>
+
+      <button class="submit-btn" type="submit">إرسال الطلب</button>
+    </form>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2>الأسئلة الشائعة</h2>
+    <div class="faq-item">
+      <h3>كيف يمكنني تقديم طلب؟</h3>
+      <p>اختر منتجاتك من القائمة ثم املأ النموذج وأرسل الطلب.</p>
+    </div>
+    <div class="faq-item">
+      <h3>هل هناك توصيل لكل الولايات؟</h3>
+      <p>نعم، نوصل إلى جميع ولايات الجزائر.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>© 2025 Old Rock Products - Tous droits réservés</p>
+    <p>Email : contact@oldrock.com | Téléphone : +213 555 000 000</p>
+  </footer>
+
+  <script>
+    // Toggle menu
+    document.querySelector(".menu-toggle").addEventListener("click", () => {
+      document.querySelector("nav").style.display =
+        document.querySelector("nav").style.display === "flex" ? "none" : "flex";
+    });
+  </script>
+</body>
+  </html>
