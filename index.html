@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>منتجات أولد روك</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
 <style>
 body {margin:0;font-family:"Tahoma",sans-serif;background:#f9fbff;color:#222;}
 
@@ -18,175 +22,696 @@ header {
   position:relative;
   z-index:1000;
 }
-header .logo {font-size:22px;font-weight:bold;color:#000;text-align:center;}
+header .logo {text-align:center; display:flex; align-items:center; justify-content:center;}
+header .logo img {height:96px; display:block;} /* x2 from 48px to 96px */
 .menu-toggle {position:absolute;right:20px;top:15px;font-size:26px;cursor:pointer;color:#000;}
-nav {display:none;position:absolute;top:60px;right:0;background:#fff;box-shadow:0 4px 6px rgba(0,0,0,0.2);width:200px;flex-direction:column;}
+nav {
+  display:none;
+  position:absolute;
+  top:100%; /* sits right under header */
+  right:0;
+  background:#fff;
+  box-shadow:0 4px 6px rgba(0,0,0,0.2);
+  width:200px;
+  flex-direction:column;
+}
 nav a {padding:12px;color:#000;text-decoration:none;border-bottom:1px solid #eee;}
 nav a:hover {background:#f5f5f5;}
 
-/* Hero carrousel fluide */
-.hero {overflow:hidden;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.1);padding:10px 0;}
-.slider-container {position:relative;width:100%;height:140px;overflow:hidden;}
+/* Generic section title */
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  margin: 60px 0 20px;
+}
+
+/* Hero carrousel fluide - centered between header logo and company block */
+.hero {
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  padding:10px 0;
+  display:flex;
+  justify-content:center;
+  margin: 30px 0; /* symmetric spacing above/below */
+}
+.slider-container {
+  position:relative;
+  width:100%;
+  max-width:1000px; /* center width */
+  height:140px;
+  overflow:hidden;
+  margin: 0 16px;
+}
 .slider-track {display:flex;position:absolute;left:0;top:0;animation:scroll 12s linear infinite;}
 .slider-track img {width:90px;height:140px;object-fit:cover;margin:0 2px;}
 @keyframes scroll {0% {transform:translateX(0);} 100% {transform:translateX(-50%);}}
 
-/* Sections */
-section {max-width:900px;margin:40px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);text-align:center;}
-h2 {color:#339af0;margin-bottom:20px;}
+/* Company Section */
+.company-container {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 30px;
+    background: transparent;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+    transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+    font-family: 'Roboto', sans-serif;
+}
+.company-container.visible {opacity: 1;transform: translateY(0) scale(1);}
+.company-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 20px;
+}
+.company-desc {font-size: 18px;color: #333;line-height: 1.8;direction: rtl;margin-bottom: 15px;}
+.learn-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg,#007bff,#00d4ff);
+    color: #ffffff !important;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,123,255,0.3);
+}
+.learn-btn:hover {transform: translateY(-3px);box-shadow:0 6px 15px rgba(0,123,255,0.5);}
+.learn-btn:active {transform: scale(0.95);box-shadow: none;}
 
-/* Produits */
-.products {display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
-.product {border:1px solid #eee;border-radius:10px;padding:15px;background:#fafcff;box-shadow:0 2px 6px rgba(0,0,0,0.05);}
-.product img {width:100%;border-radius:8px;height:150px;object-fit:cover;}
-.product button {margin-top:10px;padding:8px 14px;border:none;background:linear-gradient(45deg,#4dabf7,#339af0);color:#fff;font-weight:bold;border-radius:6px;cursor:pointer;}
-
-/* Formulaire */
-form {display:flex;flex-direction:column;align-items:center;gap:15px;border:3px solid #339af0;padding:20px;border-radius:12px;background:#f0f8ff;}
-form label {font-weight:bold;align-self:flex-start;}
-form input, form select {width:100%;max-width:400px;padding:10px;border:1px solid #ccc;border-radius:6px;}
+/* Formulaire - scoped to avoid overriding the new #formulaire */
+form:not(#formulaire) {display:flex;flex-direction:column;align-items:center;gap:15px;border:3px solid #339af0;padding:20px;border-radius:12px;background:#f0f8ff;}
+form:not(#formulaire) label {font-weight:bold;align-self:flex-start;}
+form:not(#formulaire) input, form:not(#formulaire) select {width:100%;max-width:400px;padding:10px;border:1px solid #ccc;border-radius:6px;}
 .form-products {width:100%;max-width:600px;}
 .form-item {display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;}
 .form-item img {width:50px;height:50px;border-radius:6px;object-fit:cover;}
 .submit-btn {background:linear-gradient(45deg,#4dabf7,#339af0);color:#fff;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;font-size:16px;}
 
-/* FAQ */
-.faq-item {text-align:right;margin-bottom:15px;}
-.faq-item h3 {margin-bottom:8px;color:#0077b6;}
+/* FAQ (accordion) */
+#faq {max-width: 900px; margin: 60px auto;}
+#faq .section-title {margin-bottom: 25px;}
+.faq-accordion {direction: rtl; color:#000;}
+.faq-q {
+  width:100%;
+  text-align:right;
+  background:#fff;
+  color:#000;
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:16px 20px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:background .2s, box-shadow .2s;
+}
+.faq-q:hover {background:#f9f9f9; box-shadow:0 4px 12px rgba(0,0,0,0.06);}
+.faq-q .icon {margin-left:10px; font-size:20px; line-height:1;}
+.faq-a {
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s ease;
+  background:#fafafa;
+  border:1px solid #eee;
+  border-top:none;
+  border-radius:0 0 12px 12px;
+  padding:0 20px;
+  color:#000;
+}
+.faq-a p {margin:14px 0;}
 
 /* Footer */
 footer {background:#333;color:#fff;text-align:center;padding:20px;margin-top:40px;}
 
-/* Menu toggle JS */
+/* Contacts */
+.contacts-section {max-width: 900px;margin: 60px auto 20px;padding: 10px 20px;text-align: center;}
+.contacts-card {
+  background:#fff;border:1px solid #eee;border-radius:14px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);padding:24px;
+}
+.contacts-card h3 {margin:12px 0 8px;font-size:18px;color:#000;}
+.contacts-card p {margin:6px 0;color:#000;}
+.contacts-card a {color:#007bff;text-decoration:none;font-weight:700;}
+.contacts-card a:hover {text-decoration:underline;}
+.social-links {margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+.social-links a {
+  width:44px; height:44px; border-radius:50%;
+  display:inline-flex; align-items:center; justify-content:center;
+  color:#fff; text-decoration:none;
+  box-shadow:0 6px 16px rgba(0,0,0,0.15);
+}
+.social-links a img {width:24px; height:24px; display:block;}
+.social-links a.fb {background:#1877f2;}
+.social-links a.ig {background:linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);}
+.social-links a.tt {background:#000;}
+/* Map section */
+.map-section {max-width: 1000px; margin: 40px auto; padding: 0 16px;}
 </style>
 </head>
 <body>
 
 <!-- Header -->
 <header>
-<div class="logo">أولد روك</div>
-<div class="menu-toggle" onclick="toggleMenu()">☰</div>
-<nav id="menu">
-<a href="#apropos">من نحن</a>
-<a href="#produits">منتجاتنا</a>
-<a href="#commande">طلب</a>
-<a href="#faq">الأسئلة الشائعة</a>
-<a href="#contact">اتصل بنا</a>
-</nav>
+  <div class="logo">
+    <a href="https://ibb.co/hFqHJKwQ"><img src="https://i.ibb.co/23bP1jHV/Photo-Room-20250823-060952.png" alt="Photo-Room-20250823-060952" border="0" /></a>
+  </div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav id="menu">
+    <a href="#apropos.html">من نحن</a>
+    <a href="#produits">منتجاتنا</a>
+    <a href="#commande">طلب</a>
+    <a href="#faq">الأسئلة الشائعة</a>
+    <a href="#map">موقعنا</a>
+    <a href="#contact">اتصل بنا</a>
+  </nav>
 </header>
 
 <!-- Hero carrousel fluide -->
 <section class="hero">
-<div class="slider-container">
-<div class="slider-track">
-<img src="https://i.ibb.co/xK0MV05G/1758050820453-svsth6-2-1.jpg">
-<img src="https://i.ibb.co/XfD2KSdP/1758050848269-7ksitd-2-1.jpg">
-<img src="https://i.ibb.co/yFGc46Xs/1758050882102-1tm53r-2-1.jpg">
-<img src="https://i.ibb.co/gbgw45zf/1758050920035-991ywc-2-1.jpg">
-<img src="https://i.ibb.co/tptB4zfh/1758050941713-6k02z7-2-1.jpg">
-<img src="https://i.ibb.co/QFhRCPNn/1758050963285-qlaayz-2-1.jpg">
-<img src="https://i.ibb.co/b5SF7chz/1758050986719-cie956-2-1.jpg">
-<img src="https://i.ibb.co/QjjCPsbp/1758051011422-oc76h3-2-1.jpg">
-<img src="https://i.ibb.co/SXNjV3Gb/1758051033257-yd8bzl-2-1.jpg">
-<img src="https://i.ibb.co/MD7GrS6r/1758051075675-a1d2w8-2-1.jpg">
-
-<!-- Répétition pour continuité -->
-<img src="https://i.ibb.co/xK0MV05G/1758050820453-svsth6-2-1.jpg">
-<img src="https://i.ibb.co/XfD2KSdP/1758050848269-7ksitd-2-1.jpg">
-<img src="https://i.ibb.co/yFGc46Xs/1758050882102-1tm53r-2-1.jpg">
-<img src="https://i.ibb.co/gbgw45zf/1758050920035-991ywc-2-1.jpg">
-<img src="https://i.ibb.co/tptB4zfh/1758050941713-6k02z7-2-1.jpg">
-<img src="https://i.ibb.co/QFhRCPNn/1758050963285-qlaayz-2-1.jpg">
-<img src="https://i.ibb.co/b5SF7chz/1758050986719-cie956-2-1.jpg">
-<img src="https://i.ibb.co/QjjCPsbp/1758051011422-oc76h3-2-1.jpg">
-<img src="https://i.ibb.co/SXNjV3Gb/1758051033257-yd8bzl-2-1.jpg">
-<img src="https://i.ibb.co/MD7GrS6r/1758051075675-a1d2w8-2-1.jpg">
-</div>
-</div>
+  <div class="slider-container">
+    <div class="slider-track">
+      <!-- Exemple d'images -->
+      <img src="https://i.ibb.co/xK0MV05G/1758050820453-svsth6-2-1.jpg">
+      <img src="https://i.ibb.co/XfD2KSdP/1758050848269-7ksitd-2-1.jpg">
+      <img src="https://i.ibb.co/yFGc46Xs/1758050882102-1tm53r-2-1.jpg">
+      <img src="https://i.ibb.co/gbgw45zf/1758050920035-991ywc-2-1.jpg">
+      <img src="https://i.ibb.co/tptB4zfh/1758050941713-6k02z7-2-1.jpg">
+      <img src="https://i.ibb.co/QFhRCPNn/1758050963285-qlaayz-2-1.jpg">
+      <!-- Répétition pour continuité -->
+      <img src="https://i.ibb.co/xK0MV05G/1758050820453-svsth6-2-1.jpg">
+      <img src="https://i.ibb.co/XfD2KSdP/1758050848269-7ksitd-2-1.jpg">
+    </div>
+  </div>
 </section>
 
-<!-- À propos -->
+<!-- Présentation de la société -->
 <section id="apropos">
-<h2>من نحن</h2>
-<p>نحن شركة "أولد روك" نقدم منتجات عالية الجودة مع خدمة توصيل لجميع ولايات الجزائر.</p>
+  <div class="company-container">
+    <h2 class="company-title">تقديم الشركة</h2>
+    <p class="company-desc">
+      تأسست شركة <strong>Old Rock Products</strong> سنة <strong>2022</strong>، وتُعد اليوم من أبرز الشركات في الجزائر في مجال صناعة وتوزيع الأشرطة اللاصقة بمختلف أنواعها مثل الشريط الشفاف، الشريط البني، الشريط المطبوع، والشريط الورقي. تلتزم الشركة بالجودة والابتكار، وتهدف إلى تعزيز مكانتها بشكل مستمر في السوقين الوطني والدولي للتغليف
+    </p>
+    <a href="apropos.html" class="learn-btn">اعرف أكثر</a>
+  </div>
 </section>
 
 <!-- Produits -->
 <section id="produits">
-<h2>منتجاتنا</h2>
-<div class="products">
-<div class="product"><img src="https://via.placeholder.com/200x150?text=Produit+1"><h3>منتج 1</h3><button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button></div>
-<div class="product"><img src="https://via.placeholder.com/200x150?text=Produit+2"><h3>منتج 2</h3><button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button></div>
-<div class="product"><img src="https://via.placeholder.com/200x150?text=Produit+3"><h3>منتج 3</h3><button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button></div>
-<div class="product"><img src="https://via.placeholder.com/200x150?text=Produit+4"><h3>منتج 4</h3><button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button></div>
-<div class="product"><img src="https://via.placeholder.com/200x150?text=Produit+5"><h3>منتج 5</h3><button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button></div>
-<div class="product"><img src="https://via.placeholder.com/200x150?text=Produit+6"><h3>منتج 6</h3><button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button></div>
-<div class="product"><img src="https://via.placeholder.com/200x150?text=Produit+7"><h3>منتج 7</h3><button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button></div>
-<div class="product"><img src="https://via.placeholder.com/200x150?text=Produit+8"><h3>منتج 8</h3><button onclick="document.getElementById('commande').scrollIntoView()">إشتر الآن</button></div>
-</div>
+  <h2 class="section-title">منتجاتنا</h2>
+  <div id="products-container" class="grid"></div>
 </section>
+
+<!-- Google Fonts (duplicate kept as in original) -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin: 40px 0;
+    padding: 0 16px;
+  }
+  .product-card {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    text-align: center;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    font-family: 'Roboto', sans-serif;
+  }
+  .product-card.visible {opacity: 1;transform: translateY(0) scale(1);}
+  .product-card img {width: 100%;border-radius: 15px;transition: transform 0.6s ease;}
+  .product-card:hover img {transform: scale(1.08) rotate(-1deg);}
+  .product-title {font-size: 22px;font-weight: 700;margin: 15px 0 13px;color: #222;font-family: 'Montserrat', sans-serif;}
+  .product-desc {font-size: 16px;color: #666;line-height: 1.5;direction: rtl;margin-bottom: 20px;}
+  .yards {
+    font-size: 14px;font-weight: bold;color: #0066cc;background: #eaf3ff;border: 2px solid #0066cc;
+    border-radius: 10px;padding: 6px 10px;margin-bottom: 20px;display: inline-block;
+  }
+  .price {font-size: 14px;font-weight: bold;color: #0066cc;margin-bottom: 19px;}
+  .buy-btn {
+    display: inline-block;padding: 12px 24px;border: none;background: linear-gradient(135deg,#007bff,#00d4ff);
+    color: #ffffff !important;font-size: 16px;font-weight: bold;border-radius: 50px;cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;box-shadow: 0 10px 25px rgba(0,123,255,0.3);
+    text-decoration: none;font-family: 'Roboto', sans-serif;
+  }
+  .buy-btn:hover {box-shadow: 0 6px 15px rgba(0,123,255,0.5);transform: translateY(-3px);}
+  .buy-btn:active {transform: scale(0.95);box-shadow: none;}
+</style>
+
+<script>
+const products = [
+  { 
+    name: "Scotch Autocollant 16m / 44mm", 
+    description: "شريط لاصق للتمويه، مثالي لحماية الأسطح أثناء أعمال الطلاء.", 
+    image: "https://optim.tildacdn.pub/tild3034-6333-4937-b139-653663356134/-/resize/768x/-/format/webp/1755822630723_s9cndo.jpg"
+  },
+  { 
+    name: "Scotch Autocollant 16m / 22mm", 
+    description: "شريط لاصق للتمويه، مثالي لحماية الأسطح أثناء أعمال الطلاء.", 
+    image: "https://thumb.tildacdn.com/tild3734-6562-4666-b037-313736303363/-/format/webp/1755837871246_m0kvyf.jpg.webp"
+  },
+  { 
+    name: "Scotch Scolaire 18mm", 
+    description: "شريط لاصق شفاف وملون، مثالي للاستخدام المدرسي والفني.", 
+    image: "https://thumb.tildacdn.com/tild6538-3531-4133-b532-366630373032/-/format/webp/1755835721139_r3dgqn.jpg.webp", 
+    yards: "20 / 30 / 60 Yards" 
+  },
+  { 
+    name: "Scotch D’emballage 40mic", 
+    description: "شريط تغليف بسُمك 40 ميكرون، متوفر باللغتين الفرنسية والعربية.", 
+    image: "https://static.tildacdn.com/tild6561-3935-4963-a135-393563353062/1755835937601_xxo2l5.jpg", 
+    yards: "80 / 100 / 150 / 200 / 300 / 500 / 1000 Yards / personnalisé" 
+  },
+  { 
+    name: "Scotch Autocollant blanc 16m / 44mm", 
+    description: "شريط لاصق ابيض للتمويه، مثالي لحماية الأسطح أثناء أعمال الطلاء.", 
+    image: "https://thumb.tildacdn.com/tild3839-3465-4533-b135-643861623936/-/format/webp/1755838919444_8s10zp.jpg.webp"
+  },
+  { 
+    name: "Scotch Autocollant blanc 16m / 22mm", 
+    description: "شريط لاصق ابيض للتمويه، مثالي لحماية الأسطح أثناء أعمال الطلاء.", 
+    image: "https://thumb.tildacdn.com/tild3236-6461-4633-b665-643332666436/-/format/webp/1755839083472_ep72q5.jpg.webp"
+  },
+  { 
+    name: "Scotch D’emballage 40mic", 
+    description: "شريط تغليف بسُمك 40 ميكرون، قوي ومثالي لتأمين الطرود والكرتون وحماية المحتويات أثناء النقل.", 
+    image: "https://static.tildacdn.com/tild3536-3832-4761-a238-653366656534/PhotoRoom-20250822_0.png", 
+    yards: "80 / 100 / 150 / 200 / 300 / 500 / 1000 Yards / personnalisé" 
+  },
+  { 
+    name: "Scotch D’emballage 40mic", 
+    description: "شريط تغليف شفاف بسُمك 40 ميكرون، قوي ومتين، مثالي لتأمين الطرود والكرتون وحماية المحتويات أثناء النقل.", 
+    image: "https://static.tildacdn.com/tild3838-3832-4237-a231-343830383131/PhotoRoom-20250830_1.png", 
+    yards: "80 / 100 / 150 / 200 / 300 / 500 / 1000 Yards / personnalisé" 
+  },
+  { 
+    name: "Scotch double face 4m / 20mm", 
+    description: "شريط لاصق مزدوج الوجه، مثالي لتثبيت المواد على الأسطح المختلفة دون الحاجة إلى مسامير أو براغي.", 
+    image: "https://static.tildacdn.com/tild3239-3332-4563-b534-343134396465/1756554665092_cf4bs6.jpg"
+  }
+];
+
+const container = document.getElementById("products-container");
+products.forEach(p => {
+  container.innerHTML += `
+    <div class="product-card">
+      <img src="${p.image}" alt="${p.name}">
+      <h2 class="product-title">${p.name}</h2>
+      <p class="product-desc">${p.description}</p>
+      ${p.yards ? `<div class="yards">${p.yards}</div>` : ''}
+      <div class="price">Quantité minimum : 30 cartons mélange ou unique</div>
+      <a href="#formulaire" class="buy-btn">إشتري الآن</a>
+    </div>
+  `;
+});
+
+// Animation au scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.product-card').forEach(card => observer.observe(card));
+
+// Scroll smooth vers le formulaire
+document.querySelectorAll('.buy-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector('#formulaire').scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
 
 <!-- Formulaire -->
 <section id="commande">
-<h2>نموذج الطلب</h2>
-<p style="color:red;">الحد الأدنى للطلب هو 30 علبة</p>
-<form>
-<label>الاسم الكامل</label><input type="text" required>
-<label>البريد الإلكتروني</label><input type="email" required>
-<label>رقم الهاتف</label><input type="tel" value="+213" required>
-<label>العنوان الكامل</label><input type="text" required>
-<label>الولاية</label>
-<select required>
-<option>أدرار</option><option>الشلف</option><option>الأغواط</option><option>أم البواقي</option>
-<option>باتنة</option><option>بجاية</option><option>بسكرة</option><option>بشار</option>
-<option>البليدة</option><option>البويرة</option><option>تمنراست</option><option>تبسة</option>
-<option>تلمسان</option><option>تيارت</option><option>تيزي وزو</option><option>الجزائر</option>
-<option>الجلفة</option><option>جيجل</option><option>سطيف</option><option>سعيدة</option>
-<option>سكيكدة</option><option>سيدي بلعباس</option><option>عنابة</option><option>قالمة</option>
-<option>قسنطينة</option><option>المدية</option><option>مستغانم</option><option>المسيلة</option>
-<option>معسكر</option><option>ورقلة</option><option>وهران</option><option>البيض</option>
-<option>إليزي</option><option>برج بوعريريج</option><option>بومرداس</option><option>الطارف</option>
-<option>تندوف</option><option>تيسمسيلت</option><option>الوادي</option><option>خنشلة</option>
-<option>سوق أهراس</option><option>تيبازة</option><option>ميلة</option><option>عين الدفلى</option>
-<option>النعامة</option><option>عين تموشنت</option><option>غرداية</option><option>غليزان</option>
-</select>
 
-<div class="form-products">
-<h3>اختر الكمية لكل منتج</h3>
-<div class="form-item"><img src="https://via.placeholder.com/50?text=1"><span>منتج 1</span><input type="number" placeholder="الكمية"><input type="text" placeholder="الربع"></div>
-<div class="form-item"><img src="https://via.placeholder.com/50?text=2"><span>منتج 2</span><input type="number" placeholder="الكمية"><input type="text" placeholder="الربع"></div>
-<div class="form-item"><img src="https://via.placeholder.com/50?text=3"><span>منتج 3</span><input type="number" placeholder="الكمية"><input type="text" placeholder="الربع"></div>
-<div class="form-item"><img src="https://via.placeholder.com/50?text=4"><span>منتج 4</span><input type="number" placeholder="الكمية"><input type="text" placeholder="الربع"></div>
-<div class="form-item"><img src="https://via.placeholder.com/50?text=5"><span>منتج 5</span><input type="number" placeholder="الكمية"><input type="text" placeholder="الربع"></div>
-<div class="form-item"><img src="https://via.placeholder.com/50?text=6"><span>منتج 6</span><input type="number" placeholder="الكمية"><input type="text" placeholder="الربع"></div>
-<div class="form-item"><img src="https://via.placeholder.com/50?text=7"><span>منتج 7</span><input type="number" placeholder="الكمية"><input type="text" placeholder="الربع"></div>
-<div class="form-item"><img src="https://via.placeholder.com/50?text=8"><span>منتج 8</span><input type="number" placeholder="الكمية"><input type="text" placeholder="الربع"></div>
-</div>
+  <!-- Bloc qualité ajouté avant le formulaire -->
+  <div class="quality-section">
+    <h2 class="quality-title">التزامنا بالجودة</h2>
+    <div class="underline"></div>
+    <p class="quality-desc">
+      نسعى جاهدين لتوفير منتجات عالية الجودة والمتانة. خبرتنا الواسعة في مجال تصنيع الأشرطة اللاصقة تضمن لكم منتجًا متينًا وعالي الجودة.
+    </p>
+  </div>
 
-<button type="submit" class="submit-btn">إرسال الطلب</button>
-</form>
+  <style>
+  .quality-section {
+    text-align: center;
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 1px 20px; /* top et bottom à 1px */
+    font-family: 'Roboto', sans-serif;
+  }
+  .quality-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #222;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: titleAnim 1s forwards;
+  }
+  .underline {
+    width: 60px;
+    height: 4px;
+    background: #007bff;
+    margin: 0 auto 30px;
+    border-radius: 2px;
+    opacity: 0;
+    transform: scaleX(0);
+    animation: lineAnim 1s forwards 0.5s;
+  }
+  .quality-desc {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+    direction: rtl;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: descAnim 1s forwards 1s;
+  }
+  @keyframes titleAnim {to { opacity: 1; transform: translateY(0); }}
+  @keyframes lineAnim {to { opacity: 1; transform: scaleX(1); }}
+  @keyframes descAnim {to { opacity: 1; transform: translateY(0); }}
+  </style>
+
+  <!-- Nouveau formulaire (exactement le même que fourni) -->
+  <form id="formulaire" action="https://formsubmit.co/old.rock.products34@gmail.com" method="POST"
+        style="max-width:800px;margin:auto;background:#F8FCFF;padding:25px;border-radius:10px;
+               box-shadow:0 4px 12px rgba(0,0,0,0.1);font-family:sans-serif;
+               border:2px solid #007bff;">
+
+    <h2 style="text-align:center;color:#007bff;margin-bottom:20px;padding:10px 15px;
+               border:1px solid #ccc;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.05);">
+      Formulaire de commande
+    </h2>
+
+    <p style="text-align:center;margin-bottom:30px;font-weight:bold; direction: rtl;">
+      يرجى اختيار المنتجات الخاصة بك وتحديد الكمية المطلوبة (الحد الأدنى 30 كرتون).
+    </p>
+
+    <!-- ================= PRODUITS ================= -->
+    <script>
+      const produits = [
+        {name:"Scotch Autocollant jaune 16m / 44mm", img:"https://optim.tildacdn.pub/tild3034-6333-4937-b139-653663356134/-/resize/768x/-/format/webp/1755822630723_s9cndo.jpg.webp", yard:false},
+        {name:"Scotch Autocollant jaune 16m / 22mm", img:"https://thumb.tildacdn.com/tild3734-6562-4666-b037-313736303363/-/format/webp/1755837871246_m0kvyf.jpg.webp", yard:false},
+        {name:"Scotch Scolaire 18mm", img:"https://thumb.tildacdn.com/tild6538-3531-4133-b532-366630373032/-/format/webp/1755835721139_r3dgqn.jpg.webp", yard:true, yardOptions:["20","30","60","personnalise"]},
+        {name:"Scotch D’emballage 40mic ", img:"https://static.tildacdn.com/tild6561-3935-4963-a135-393563353062/1755835937601_xxo2l5.jpg", yard:true, yardOptions:["80","100","150","200","300","500","1000","personnalise"]},
+        {name:"Scotch Autocollant blanc 16m / 44mm", img:"https://thumb.tildacdn.com/tild3839-3465-4533-b135-643861623936/-/format/webp/1755838919444_8s10zp.jpg.webp", yard:false},
+        {name:"Scotch Autocollant blanc 16m / 22mm", img:"https://thumb.tildacdn.com/tild3236-6461-4633-b665-643332666436/-/format/webp/1755839083472_ep72q5.jpg.webp", yard:false},
+        {name:"Scotch D’emballage 40mic maron", img:"https://static.tildacdn.com/tild3536-3832-4761-a238-653366656534/PhotoRoom-20250822_0.png", yard:true, yardOptions:["80","100","150","200","300","500","1000","personnalise"]},
+        {name:"Scotch D’emballage 40mic transparent", img:"https://static.tildacdn.com/tild3838-3832-4237-a231-343830383131/PhotoRoom-20250830_1.png", yard:true, yardOptions:["80","100","150","200","300","500","1000","personnalise"]},
+        {name:"Scotch double face 4m / 20mm", img:"https://static.tildacdn.com/tild3239-3332-4563-b534-343134396465/1756554665092_cf4bs6.jpg", yard:false}
+      ];
+
+      produits.forEach((p,i)=>{
+        let yardHTML = '';
+        if(p.yard){
+          let options = '';
+          p.yardOptions.forEach(opt => {
+            options += `<option value="${opt}">${opt === 'personnalise' ? 'Personnalisé' : opt}</option>`;
+          });
+          yardHTML = `<div style="display:flex;flex-direction:column;gap:6px;width:180px;">
+            <label style="font-size:12px;color:#555;">Yard :</label>
+            <select name="${p.name} - Yard" class="yard-select" data-custom-id="custom-${i+1}" style="padding:6px;border:1px solid #ccc;border-radius:5px;background:#f8f8f8;">
+              <option value="" disabled selected>Choisir…</option>
+              ${options}
+            </select>
+            <input type="text" id="custom-${i+1}" name="${p.name} - Yard personnalisé" placeholder="Entrez la valeur" style="padding:6px;border:1px solid #ccc;border-radius:5px;display:none;">
+          </div>`;
+        }
+
+        document.write(`
+        <div style="margin-bottom:20px;display:flex;align-items:center;gap:15px;flex-wrap:wrap;">
+          <img src="${p.img}" alt="${p.name}" style="width:90px;border-radius:6px;">
+          <label style="flex:1;min-width:200px;">${p.name} :</label>
+          <input type="number" name="${p.name}" min="0" max="10000" placeholder="Quantité" style="padding:6px;width:100px;">
+          ${yardHTML}
+        </div>
+        `);
+      });
+    </script>
+
+    <!-- ================= INFOS CLIENT ================= -->
+    <h3 style="text-align:center;color:#007bff;margin-top:30px;margin-bottom:25px;padding:8px 12px;
+               border:1px solid #ccc;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+      Informations client
+    </h3>
+
+    <label>Nom complet :</label><br>
+    <input type="text" name="Nom" required style="width:100%;padding:8px;margin:8px 0;border:1px solid #ccc;border-radius:5px;"><br>
+
+    <label>Email :</label><br>
+    <input type="email" name="Email" required style="width:100%;padding:8px;margin:8px 0;border:1px solid #ccc;border-radius:5px;"><br>
+
+    <label>Téléphone :</label><br>
+    <div style="display:flex;gap:8px;margin:8px 0;">
+      <select name="Indicatif" required style="padding:8px;border:1px solid #ccc;border-radius:5px;background:#f8f8f8;width:110px;">
+        <option value="+213">+213 DZ</option>
+        <option value="+33">+33 FR</option>
+        <option value="+212">+212 MA</option>
+        <option value="+216">+216 TN</option>
+        <option value="+20">+20 EG</option>
+        <option value="+221">+221 SN</option>
+        <option value="+971">+971 UAE</option>
+        <option value="+44">+44 UK</option>
+        <option value="+1">+1 US/CA</option>
+      </select>
+      <input type="tel" name="Téléphone" placeholder="Numéro de téléphone" required style="flex:1;padding:8px;border:1px solid #ccc;border-radius:5px;">
+    </div>
+
+    <label>Adresse de livraison :</label><br>
+    <textarea name="Adresse" rows="3" required style="width:100%;padding:8px;margin:8px 0;border:1px solid #ccc;border-radius:5px;"></textarea><br>
+
+    <!-- ================= AUTRES COMMENTAIRES ================= -->
+    <label>Autres commentaires :</label><br>
+    <textarea name="Commentaires" rows="3" placeholder="Facultatif" style="width:100%;padding:8px;margin:8px 0;border:1px solid #ccc;border-radius:5px;"></textarea><br>
+
+    <input type="hidden" name="_captcha" value="false">
+
+    <div style="text-align:center; margin-top:20px;">
+      <input type="submit" value="Envoyer la commande" style="background:#007bff;color:white;padding:12px 25px;border:none;border-radius:6px;cursor:pointer;font-size:15px;">
+    </div>
+
+    <p id="confirmation" style="display:none;color:green;text-align:center;margin-top:15px;">
+      Merci ! Votre commande a été envoyée.
+    </p>
+  </form>
+
+  <script>
+  document.getElementById("formulaire").addEventListener("submit", function(e){
+    let inputs = this.querySelectorAll('input[type="number"]');
+    let total = 0;
+    inputs.forEach(input => { total += Number(input.value)||0; });
+    if(total < 30){
+      e.preventDefault();
+      alert("La commande doit contenir au moins 30 articles au total !");
+    }
+  });
+
+  function handleYardSelect(select){
+    const customId = select.getAttribute('data-custom-id');
+    const customInput = document.getElementById(customId);
+    if(!customInput) return;
+    if(select.value === 'personnalise'){
+      customInput.style.display='block';
+      customInput.disabled=false;
+      customInput.focus();
+    } else {
+      customInput.style.display='none';
+      customInput.disabled=true;
+      customInput.value='';
+    }
+  }
+
+  const yardSelects = document.querySelectorAll('.yard-select');
+  yardSelects.forEach(sel => {
+    handleYardSelect(sel);
+    sel.addEventListener('change', ()=>handleYardSelect(sel));
+  });
+  </script>
 </section>
 
-<!-- FAQ -->
+<!-- FAQ (nouveau style accordéon) -->
 <section id="faq">
-<h2>الأسئلة الشائعة</h2>
-<div class="faq-item"><h3>ما هي مدة التوصيل؟</h3><p>يتم التوصيل خلال 3–5 أيام عمل داخل الجزائر.</p></div>
-<div class="faq-item"><h3>ما هي سياسة الإرجاع؟</h3><p>يمكنك استرجاع المنتجات خلال 7 أيام من الاستلام.</p></div>
-<div class="faq-item"><h3>ما هي طرق الدفع؟</h3><p>الدفع نقداً عند التسليم أو عبر التحويل البنكي.</p></div>
+  <h2 class="section-title">الأسئلة الشائعة</h2>
+  <div class="faq-accordion">
+
+    <button class="faq-q" aria-expanded="false">
+      ما هي أنواع الشريط اللاصق التي توفرونها؟
+      <span class="icon">+</span>
+    </button>
+    <div class="faq-a"><p>نقدم لكم تشكيلة متنوعة من أشرطة اللصق، منها شريط سكوتش للاستخدام المكتبي، وأشرطة التغليف، بالإضافة إلى أشرطة ذات مواصفات خاصة</p></div>
+
+    <button class="faq-q" aria-expanded="false">
+      هل يمكنني طلب كميات صغيرة؟
+      <span class="icon">+</span>
+    </button>
+    <div class="faq-a"><p>الحد الأدنى للطلب هو 30 كرتون (يمكن أن تكون مختلطة من عدة منتجات)</p></div>
+
+    <button class="faq-q" aria-expanded="false">
+      هل توفرون خدمة التوصيل؟
+      <span class="icon">+</span>
+    </button>
+    <div class="faq-a"><p>نعم، نوفر التوصيل داخل الجزائر، ومع إمكانية الشحن إلى جميع دول إفريقيا حسب الكمية<br>وإذا كانت الطلبية 60 كرتون أو أكثر، يكون التوصيل مجاني</p></div>
+
+    <button class="faq-q" aria-expanded="false">
+      هل يمكنني مزج منتجات مختلفة في نفس الطلبية؟
+      <span class="icon">+</span>
+    </button>
+    <div class="faq-a"><p>نعم، يمكنك اختيار منتجات متنوعة في نفس الطلب، بشرط أن يكون المجموع على الأقل 30 كرتون</p></div>
+
+    <button class="faq-q" aria-expanded="false">
+      ما هي طرق الدفع المتاحة؟
+      <span class="icon">+</span>
+    </button>
+    <div class="faq-a"><p>نوفر الدفع نقداً عند الاستلام (حسب المنطقة)، أو عبر التحويل البنكي، أو وسائل دفع إلكترونية متفق عليها مسبقاً</p></div>
+
+  </div>
+</section>
+
+<script>
+  // FAQ accordion behavior
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const panel = btn.nextElementSibling;
+      btn.setAttribute('aria-expanded', String(!expanded));
+      btn.querySelector('.icon').textContent = expanded ? '+' : '−';
+      if (!expanded) {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      } else {
+        panel.style.maxHeight = null;
+      }
+    });
+  });
+</script>
+
+<!-- Carte Google Maps -->
+<section id="map" class="map-section">
+  <!-- Carte intégrée Google Maps avec épingle pour Old Rock Products -->
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.40323924074!2d3.290771515259852!3d36.79575977995178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128cbd67b7f24115%3A0xff12b7c5cc848da3!2sOld%20Rock%20Products!5e0!3m2!1sfr!2sdz!4v1692790000000!5m2!1sfr!2sdz"
+    width="100%" 
+    height="400" 
+    style="border:0; border-radius:15px;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</section>
+
+<!-- Our Contacts -->
+<section id="contacts" class="contacts-section">
+  <h2 class="section-title">Our Contacts</h2>
+  <div class="contacts-card">
+    <h3>Service commercial</h3>
+    <p dir="ltr"><a href="tel:+213778784494">+213778784494</a></p>
+    <p dir="ltr"><a href="tel:+213796534076">+213796534076</a></p>
+
+    <h3>Email</h3>
+    <p><a href="mailto:old.rock.products34@gmail.com">old.rock.products34@gmail.com</a></p>
+
+    <div class="social-links">
+      <a class="fb" href="https://www.facebook.com/share/16zLeU5q8r/" target="_blank" rel="noopener" aria-label="Facebook">
+        <img src="https://cdn.simpleicons.org/facebook/ffffff" alt="Facebook">
+      </a>
+      <a class="ig" href="https://www.instagram.com/sarl.old.rock.products?igsh=M3UwbGptZTV0cW8z" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="https://cdn.simpleicons.org/instagram/ffffff" alt="Instagram">
+      </a>
+      <a class="tt" href="https://www.tiktok.com/@sorp_bba?_t=ZS-8zmwHsqjAAS&_r=1" target="_blank" rel="noopener" aria-label="TikTok">
+        <img src="https://cdn.simpleicons.org/tiktok/ffffff" alt="TikTok">
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- Footer -->
 <footer id="contact">
-<p>تواصل معنا: info@oldrock.com | +213 123 456 789</p>
-<p>جميع الحقوق محفوظة © 2025 أولد روك</p>
+  <p>© All rights reserved. Old Rock Products</p>
+  <p>Old.rock.products34@gmail.com</p>
 </footer>
 
 <script>
 function toggleMenu() {
   const menu = document.getElementById('menu');
-  if(menu.style.display === 'flex'){menu.style.display='none';} else {menu.style.display='flex';}
+  // Toggle display
+  if(menu.style.display === 'flex'){
+    menu.style.display='none';
+    removeOutsideCloser();
+  } else {
+    menu.style.display='flex';
+    // Add outside click handler (delay to avoid immediate close on same click)
+    setTimeout(addOutsideCloser, 0);
+  }
 }
+
+// Close menu when clicking outside
+function outsideClickHandler(e){
+  const menu = document.getElementById('menu');
+  const toggle = document.querySelector('.menu-toggle');
+  if(menu.style.display === 'flex' && !menu.contains(e.target) && !toggle.contains(e.target)){
+    menu.style.display = 'none';
+    removeOutsideCloser();
+  }
+}
+function addOutsideCloser(){
+  document.addEventListener('click', outsideClickHandler);
+  document.addEventListener('touchstart', outsideClickHandler);
+}
+function removeOutsideCloser(){
+  document.removeEventListener('click', outsideClickHandler);
+  document.removeEventListener('touchstart', outsideClickHandler);
+}
+
+// Close the menu when a nav link is clicked
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#menu a').forEach(a => {
+    a.addEventListener('click', () => {
+      const menu = document.getElementById('menu');
+      if(menu.style.display === 'flex'){
+        menu.style.display = 'none';
+        removeOutsideCloser();
+      }
+    });
+  });
+});
+
+// Animation au scroll pour le bloc société
+const company = document.querySelector('.company-container');
+const observerCompany = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observerCompany.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+observerCompany.observe(company);
 </script>
 
 </body>
-</html>
+  </html>
